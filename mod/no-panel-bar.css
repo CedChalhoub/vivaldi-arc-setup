@@ -1,0 +1,10 @@
+/* Arc has no panel icon strip: hide Vivaldi's, panels still open via shortcuts */
+#switch{
+    display: none !important;
+}
+
+#panels-container.icons,
+#panels-container.minimized{
+    width: 0 !important;
+    min-width: 0 !important;
+}

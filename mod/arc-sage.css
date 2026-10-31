@@ -1,0 +1,79 @@
+/* "Arc Sage" theme: sage-green sidebar with film grain, like Arc's green space */
+
+#browser.theme-id-5a6e0c1f-8d2b-4e7a-9c3d-a5bf9e5a6e01{
+    --sage: #a5bf9e;
+    --sageText: #2f4529;
+    background-color: var(--sage) !important;
+    /* fine noise; the web page stays opaque on top, so only the frame/sidebar gets grain */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") !important;
+    background-size: 220px 220px !important;
+    background-blend-mode: soft-light;
+}
+
+#browser.theme-id-5a6e0c1f-8d2b-4e7a-9c3d-a5bf9e5a6e01 :is(#tabs-tabbar-container, .tabbar-wrapper, #header, .mainbar, footer){
+    color: var(--sageText);
+}
+
+/* URL field: light, translucent, rounded */
+#browser.theme-id-5a6e0c1f-8d2b-4e7a-9c3d-a5bf9e5a6e01 .tabbar-wrapper .UrlBar-AddressField{
+    background-color: rgba(255, 255, 255, 0.28) !important;
+    border: none !important;
+    border-radius: 10px !important;
+    height: 34px;
+    color: var(--sageText) !important;
+}
+
+#browser.theme-id-5a6e0c1f-8d2b-4e7a-9c3d-a5bf9e5a6e01 .tabbar-wrapper .UrlBar-AddressField:focus-within{
+    background-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+#browser.theme-id-5a6e0c1f-8d2b-4e7a-9c3d-a5bf9e5a6e01 .tabbar-wrapper .UrlFragment-Wrapper{
+    --HighlightColor: var(--sageText);
+    --LowlightColor: rgba(47, 69, 41, 0.6);
+}
+
+/* tabs: no boxes, active tab is a soft white pill */
+#browser.theme-id-5a6e0c1f-8d2b-4e7a-9c3d-a5bf9e5a6e01 .tab-position .tab{
+    background: transparent !important;
+    color: var(--sageText) !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+}
+
+#browser.theme-id-5a6e0c1f-8d2b-4e7a-9c3d-a5bf9e5a6e01 .tab-position .tab:hover{
+    background: rgba(255, 255, 255, 0.18) !important;
+}
+
+#browser.theme-id-5a6e0c1f-8d2b-4e7a-9c3d-a5bf9e5a6e01 .tab-position .tab.active{
+    background: rgba(255, 255, 255, 0.6) !important;
+    box-shadow: 0 1px 2px rgba(47, 69, 41, 0.12) !important;
+}
+
+#browser.theme-id-5a6e0c1f-8d2b-4e7a-9c3d-a5bf9e5a6e01 .tab-position .tab .title{
+    font-weight: 500;
+}
+
+/* toolbar icons in the sidebar match the text */
+#browser.theme-id-5a6e0c1f-8d2b-4e7a-9c3d-a5bf9e5a6e01 .tabbar-wrapper .button-toolbar > button{
+    color: var(--sageText) !important;
+    fill: var(--sageText) !important;
+}
+
+/* panel icon strip blends into the sidebar */
+#browser.theme-id-5a6e0c1f-8d2b-4e7a-9c3d-a5bf9e5a6e01 :is(#panels-container, #panels, #switch){
+    background: transparent !important;
+    color: var(--sageText) !important;
+    border: none !important;
+}
+
+/* auto-hidden sidebar pops out in its own wrapper: give it the same sage + grain, floating like Arc */
+#browser.theme-id-5a6e0c1f-8d2b-4e7a-9c3d-a5bf9e5a6e01 .auto-hide-wrapper{
+    background-color: var(--sage) !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") !important;
+    background-size: 220px 220px !important;
+    background-blend-mode: soft-light;
+    color: var(--sageText);
+    border: none !important;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(47, 69, 41, 0.15) !important;
+}

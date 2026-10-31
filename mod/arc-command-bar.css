@@ -1,0 +1,190 @@
+/* Arc-style command bar: Quick Commands (Cmd+T) as a light, frosted floating search panel */
+
+.quick-command-container{
+    --qcText: #1d1d1f;
+    --qcMuted: rgba(29, 29, 31, 0.5);
+    --qcHover: rgba(29, 29, 31, 0.06);
+    width: min(720px, 80vw) !important;
+    max-width: none !important;
+
+    border-radius: 22px !important;
+    border: 1px solid rgba(255, 255, 255, 0.7) !important;
+    background:
+        radial-gradient(120% 70% at 55% 105%, rgba(255, 196, 214, 0.55), transparent 60%),
+        radial-gradient(80% 60% at 0% 0%, rgba(233, 236, 255, 0.7), transparent 70%),
+        linear-gradient(160deg, rgba(250, 250, 252, 0.97), rgba(247, 240, 244, 0.97)) !important;
+    color: var(--qcText) !important;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.28), 0 4px 14px rgba(0, 0, 0, 0.1) !important;
+    overflow: hidden;
+}
+
+.quick-command-container header{
+    background: transparent !important;
+    border: none !important;
+    padding: 10px 12px 4px !important;
+}
+
+/* search field with a magnifier on the left */
+.quick-command-container .qc-entry{
+    position: relative;
+}
+
+.quick-command-container .qc-entry::before{
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    transform: translateY(-50%);
+    background: no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d1d1f' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.5 15.5 20 20'/%3E%3C/svg%3E");
+    opacity: 0.75;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.quick-command-container :is(.quick-command-search, .quick-command-search-hint){
+    font-size: 21px !important;
+    font-weight: 400 !important;
+    height: 52px !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    padding: 0 14px 0 46px !important;
+    color: var(--qcText) !important;
+}
+
+.quick-command-container .quick-command-search-hint{
+    color: var(--qcMuted) !important;
+}
+
+.quick-command-container:has(.quick-command-search[value=""]) .quick-command-search-hint{
+    display: none !important;
+}
+
+.quick-command-container:has(.quick-command-search[value=""]) .qc-entry::after{
+    content: "Rechercher ou saisir une URL";
+    position: absolute;
+    left: 46px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 21px;
+    color: var(--qcMuted);
+    pointer-events: none;
+}
+
+/* no tip bubble, no clear button */
+.quick-command-tip,
+.quick-command-container header button{
+    display: none !important;
+}
+
+/* results: bigger rows (zoom keeps the virtual list's offsets consistent) */
+.quick-command-container .quick-commands{
+    zoom: 1.2;
+    border-top: none;
+    padding: 0 6px 8px;
+    max-height: 380px;
+    background: transparent !important;
+}
+
+.quick-command-container .VivaldiList{
+    background: transparent !important;
+}
+
+.quick-command-container .quick-command-sectionheader{
+    background: transparent !important;
+    color: var(--qcMuted) !important;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+    padding-left: 12px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.quick-command-container .quick-command-sectionheader .item-count{
+    display: none;
+}
+
+.quick-command-container .quick-command{
+    color: var(--qcText) !important;
+    border-radius: 9px;
+    margin: 0 4px;
+    padding-left: 10px;
+    background: transparent !important;
+}
+
+.quick-command-container .quick-command:hover{
+    background: var(--qcHover) !important;
+}
+
+.quick-command-container .quick-command[data-selected]{
+    background: rgba(29, 29, 31, 0.08) !important;
+    color: var(--qcText) !important;
+}
+
+.quick-command-container .quick-command-favicon{
+    margin-right: 10px;
+}
+
+.quick-command-container .quick-command-title{
+    color: var(--qcText) !important;
+    font-weight: 400;
+}
+
+.quick-command-container :is(.quick-command-url, .quick-command-meta, .quick-command-timestamp){
+    color: var(--qcMuted) !important;
+    margin-left: 10px;
+}
+
+.quick-command-container :is(.quick-command-workspace-icon, .quick-command .close){
+    display: none !important;
+}
+
+.quick-command-container mark,
+.quick-command-container .quick-command b{
+    background: transparent !important;
+    color: inherit !important;
+    font-weight: 600;
+}
+
+/* Arc puts the URL right after the title, in gray */
+.quick-command-container .quick-command-title{
+    flex: 0 1 auto !important;
+    max-width: 60%;
+}
+
+.quick-command-container .quick-command-url{
+    flex: 1 1 auto !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+}
+
+.quick-command-container :is(.quick-command-timestamp, .quick-command .item-count){
+    background: transparent !important;
+    border: none !important;
+    color: var(--qcMuted) !important;
+    margin-left: auto;
+}
+
+/* the modal wrapper around the bar has its own square-ish box: make it invisible */
+.modal-wrapper:has(> .quick-command-container),
+#modal-bg.qc-modal{
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 22px !important;
+    overflow: visible !important;
+}
+
+/* Arc doesn't show visit dates/counts */
+.quick-command-container :is(.quick-command-timestamp, .quick-command .item-count){
+    display: none !important;
+}
+
+.quick-command-container .quick-command{
+    padding-left: 4px;
+}
